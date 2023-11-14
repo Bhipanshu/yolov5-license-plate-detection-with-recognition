@@ -28,7 +28,8 @@ from sklearn.preprocessing import LabelEncoder
 import glob
 
 print('hwllo')
-dataset_paths = glob.glob("/media/avinash/fourtbhdd/Avinash/3d_human_pose/Datasets/mpi_inf_3dhp/final/dataset_characters/**/*.jpg")
+#character dataset link - 
+dataset_paths = glob.glob("character dataset path")
 
 # cols=4
 # rows=3
@@ -177,7 +178,7 @@ BATCH_SIZE = 64
 print('2')
 import tensorflow.keras.backend as K
 test_datagen = ImageDataGenerator(rescale=1./255, width_shift_range=0.1, height_shift_range=0.1)
-path = '/media/avinash/fourtbhdd/Avinash/3d_human_pose/Datasets/mpi_inf_3dhp/final/characterrecognitionfromnumberplate'
+path ='characterrecognitionfromnumberplate'
 
 test_generator = test_datagen.flow_from_directory(
         path+'/Testing Data',  # this is the target directory
@@ -189,7 +190,7 @@ test_generator = test_datagen.flow_from_directory(
 # with open("MobileNets_character_recognition.json", "w") as json_file:
 #   json_file.write(model_json)
 
-plate_cascade = cv2.CascadeClassifier('/media/avinash/fourtbhdd/Avinash/3d_human_pose/Datasets/mpi_inf_3dhp/final/ai_indian_license_plate_recognition_data/indian_license_plate.xml')
+plate_cascade = cv2.CascadeClassifier('indian_license_plate.xml')
 
 def detect_plate(img, text=''): # the function detects and perfors blurring on the number plate.
     plate_img = img.copy()
@@ -216,7 +217,7 @@ def display(img_, title=''):
 
 
 # img = cv2.imread('/media/avinash/fourtbhdd/Avinash/3d_human_pose/Datasets/mpi_inf_3dhp/final/ai_indian_license_plate_recognition_data/car.jpg')
-img = cv2.imread('/media/avinash/fourtbhdd/Avinash/3d_human_pose/Datasets/mpi_inf_3dhp/final/train/images/1f34454c4c073e1b_jpg.rf.51b3784a16f91c427d67f4972ed26c39.jpg')
+img = cv2.imread('JPG IMAGE')
 output_img, plate = detect_plate(img)
 display(output_img, 'detected license plate in the input image')
 
@@ -326,15 +327,15 @@ for i in range(10):
 
 
 
-json_file = open('/media/avinash/fourtbhdd/Avinash/3d_human_pose/Datasets/mpi_inf_3dhp/final/MobileNets_character_recognition.json', 'r')
+json_file = open('../MobileNets_character_recognition.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 model = model_from_json(loaded_model_json)
-model.load_weights("/media/avinash/fourtbhdd/Avinash/3d_human_pose/Datasets/mpi_inf_3dhp/final/License_character_recognition.h5")
+model.load_weights("../License_character_recognition.h5")
 print("[INFO] Model loaded successfully...")
 
 labels = LabelEncoder()
-labels.classes_ = np.load('/media/avinash/fourtbhdd/Avinash/3d_human_pose/Datasets/mpi_inf_3dhp/final/license_character_classes.npy')
+labels.classes_ = np.load('../license_character_classes.npy')
 print("[INFO] Labels loaded successfully...")
 
 
